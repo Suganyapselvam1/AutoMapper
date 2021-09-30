@@ -11,5 +11,6 @@ namespace AutoMapper
         public int ID { get; set; }
         public string DiffName { get; set; }
         public decimal Price { get; set; }
+        public List<MerchandiseSizeMap> MerchandiseSizeMaps { get; set; }
     }
 }

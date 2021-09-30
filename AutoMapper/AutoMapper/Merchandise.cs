@@ -11,5 +11,7 @@ namespace AutoMapper
         public int ID { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
+        public MerchandiseSizeMap MerchandiseSizeMap { get; set; }
+        public List<MerchandiseSizeMap> MerchandiseSizeMaps { get; set; }
     }
 }

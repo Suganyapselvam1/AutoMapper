@@ -22,14 +22,65 @@ namespace AutoMapper
 
             WithoutAutoMapper();
             AutoMapperSimpleEx();
+            AutoMapperForList();
         }
 
+        private static void AutoMapperForList()
+        {
+            var merchandise = new Merchandise();
+            merchandise.ID = 2;
+            merchandise.Name = "Gift Card";
+            merchandise.Price = 50;
+
+            var merchandiseSizeMap1 = new MerchandiseSizeMap()
+            {
+                ID = 1,
+                Size = "M",
+                Stock = 5,
+            };
+
+            var merchandiseSizeMap2 = new MerchandiseSizeMap()
+            {
+                ID = 2,
+                Size = "L",
+                Stock = 4,
+            };
+
+            var merchandiseSizeMap3 = new MerchandiseSizeMap()
+            {
+                ID = 1,
+                Size = "XL",
+                Stock = 3,
+            };
+
+            var merchandiseSizeMaps = new List<MerchandiseSizeMap>();
+            merchandiseSizeMaps.Add(merchandiseSizeMap1);
+            merchandiseSizeMaps.Add(merchandiseSizeMap2);
+            merchandiseSizeMaps.Add(merchandiseSizeMap3);
+
+            merchandise.MerchandiseSizeMaps = merchandiseSizeMaps;
+
+            MerchandiseView merchandiseView = mapper.Map<MerchandiseView>(merchandise);
+            foreach (var merchandiseSizeMap in merchandiseView.MerchandiseSizeMaps)
+            {
+                Console.WriteLine(merchandiseSizeMap.Size);
+            }
+
+        }
         private static void AutoMapperSimpleEx()
         {
             var merchandise = new Merchandise();
             merchandise.ID = 2;
             merchandise.Name = "Gift Card";
             merchandise.Price = 50;
+
+            merchandise.MerchandiseSizeMap = new MerchandiseSizeMap()
+            {
+                ID=1,
+                Size="M",
+                Stock=5,
+            };
+            
 
             MerchandiseView merchandiseView = mapper.Map<MerchandiseView>(merchandise);
             Console.WriteLine(merchandiseView.ID);
